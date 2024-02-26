@@ -1,12 +1,19 @@
-﻿<Window x:Class="Oh_My_Ping.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Oh_My_Ping"
+        xmlns:Properties="clr-namespace:Oh_My_Ping.Properties" x:Class="Oh_My_Ping.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Oh My Ping!!" Height="253" Width="670" ResizeMode="NoResize" Icon="/OhMyPing2.png">
+    <Grid Background="#FF2F3333" Margin="0,0,0,0">
+        <Slider Width="351" HorizontalAlignment="Left" VerticalAlignment="Top" ValueChanged="Slider_ValueChanged" Margin="267,150,0,0" Maximum="500" TickFrequency="50" TickPlacement="BottomRight"/>
+        <Label Content="① Server address" HorizontalAlignment="Left" Margin="28,28,0,0" VerticalAlignment="Top" BorderBrush="#FFFFDEDE" Foreground="White" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" FontWeight="Bold" FontSize="14"/>
+        <Label Content="➃ Delay&#xA;" HorizontalAlignment="Left" Margin="28,146,0,0" VerticalAlignment="Top" BorderBrush="#FFFFDEDE" Foreground="White" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" FontWeight="Bold" FontSize="14" Height="32"/>
+        <TextBox HorizontalAlignment="Left" Margin="176,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" Height="28" TextChanged="TextBox_TextChanged" FontSize="16" VerticalContentAlignment="Center"/>
+        <Button Content="➁ Start" HorizontalAlignment="Left" Margin="533,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.202,0.052" Height="28" Width="85" Background="#FF1E9831" Foreground="White" BorderBrush="#FF46C354"/>
+        <Label Content="➂ Connect to address `localhost:25565`" HorizontalAlignment="Left" Margin="28,92,0,0" VerticalAlignment="Top" BorderBrush="#FFFFDEDE" Foreground="White" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" FontWeight="Bold" FontSize="14" Height="32" RenderTransformOrigin="0.725,-1.468" Width="292"/>
+        <TextBox HorizontalAlignment="Left" Margin="176,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63" Height="26" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"/>
     </Grid>
 </Window>
