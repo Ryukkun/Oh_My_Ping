@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Oh_My_Ping"
         xmlns:Properties="clr-namespace:Oh_My_Ping.Properties" x:Class="Oh_My_Ping.MainWindow"
         mc:Ignorable="d"
-        Title="Oh My Ping!!" Height="253" Width="670" ResizeMode="NoResize" Icon="/OhMyPing2.png">
+        Title="Oh My Ping!!" Height="253" Width="670" ResizeMode="NoResize" Icon="/OhMyDat2.png">
     <Grid Background="#FF2F3333" Margin="0,0,0,0">
         <Slider Width="351" HorizontalAlignment="Left" VerticalAlignment="Top" ValueChanged="Slider_ValueChanged" Margin="267,150,0,0" Maximum="500" TickFrequency="50" TickPlacement="BottomRight"/>
         <Label Content="① Server address" HorizontalAlignment="Left" Margin="28,28,0,0" VerticalAlignment="Top" BorderBrush="#FFFFDEDE" Foreground="White" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" FontWeight="Bold" FontSize="14"/>
