@@ -20,19 +20,56 @@ namespace Oh_My_Ping
     /// </summary>
     public partial class MainWindow : Window
     {
+        private double delay = 0;
+        private bool delayTextChanged = false;
+        private bool delaySliderChanged = false;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void delaySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (delayTextChanged)
+            {
+                delayTextChanged = false;
+                return;
+            }
+
+            delaySliderChanged = true;
+            delay = e.NewValue;
+            delayLabel.Text = ((int)delay).ToString();
+            
+        }
+
+
+        private void startButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
+        private void delayLabel_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (delaySliderChanged) { 
+                delaySliderChanged = false;
+                return; 
+            }
+
+            try
+            {
+                delay = double.Parse(delayLabel.Text);
+                delayLabel.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            }
+            catch (Exception ex)
+            {
+                delayLabel.Background = new SolidColorBrush(Color.FromRgb(255, 170, 170));
+                return;
+            }
+
+            delayTextChanged = true;
+            delaySlider.Value = delay;
         }
     }
 }

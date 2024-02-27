@@ -8,12 +8,14 @@
         mc:Ignorable="d"
         Title="Oh My Ping!!" Height="253" Width="670" ResizeMode="NoResize" Icon="/OhMyDat2.png">
     <Grid Background="#FF2F3333" Margin="0,0,0,0">
-        <Slider Width="351" HorizontalAlignment="Left" VerticalAlignment="Top" ValueChanged="Slider_ValueChanged" Margin="267,150,0,0" Maximum="500" TickFrequency="50" TickPlacement="BottomRight"/>
+        <Slider x:Name="delaySlider" Width="351" HorizontalAlignment="Left" VerticalAlignment="Top" ValueChanged="delaySlider_ValueChanged" Margin="267,150,0,0" Maximum="500" TickFrequency="50" TickPlacement="BottomRight" SmallChange="1"/>
         <Label Content="① Server address" HorizontalAlignment="Left" Margin="28,28,0,0" VerticalAlignment="Top" BorderBrush="#FFFFDEDE" Foreground="White" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" FontWeight="Bold" FontSize="14"/>
         <Label Content="➃ Delay&#xA;" HorizontalAlignment="Left" Margin="28,146,0,0" VerticalAlignment="Top" BorderBrush="#FFFFDEDE" Foreground="White" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" FontWeight="Bold" FontSize="14" Height="32"/>
-        <TextBox HorizontalAlignment="Left" Margin="176,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" Height="28" TextChanged="TextBox_TextChanged" FontSize="16" VerticalContentAlignment="Center"/>
-        <Button Content="➁ Start" HorizontalAlignment="Left" Margin="533,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.202,0.052" Height="28" Width="85" Background="#FF1E9831" Foreground="White" BorderBrush="#FF46C354"/>
+        <TextBox x:Name="addressText" HorizontalAlignment="Left" Margin="176,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" Height="28" FontSize="16" VerticalContentAlignment="Center"/>
+        <Button x:Name="startButton" Content="➁ Start" HorizontalAlignment="Left" Margin="533,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.202,0.052" Height="28" Width="85" Background="#FF1E9831" Foreground="White" BorderBrush="#FF46C354" Click="startButton_Click"/>
         <Label Content="➂ Connect to address `localhost:25565`" HorizontalAlignment="Left" Margin="28,92,0,0" VerticalAlignment="Top" BorderBrush="#FFFFDEDE" Foreground="White" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" FontWeight="Bold" FontSize="14" Height="32" RenderTransformOrigin="0.725,-1.468" Width="292"/>
-        <TextBox HorizontalAlignment="Left" Margin="176,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63" Height="26" TextChanged="TextBox_TextChanged" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="delayLabel" HorizontalAlignment="Left" Margin="176,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="46" Height="26" VerticalContentAlignment="Center" Text="0" TextAlignment="Center" TextChanged="delayLabel_TextChanged" Background="White"/>
+        <Label Content="ms" HorizontalAlignment="Left" Margin="227,156,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label HorizontalAlignment="Left" Margin="262,169,0,0" VerticalAlignment="Top" Foreground="White" Width="374" Content=" 0                     100                   200                   300                   400                   500" FontSize="10"/>
     </Grid>
 </Window>
