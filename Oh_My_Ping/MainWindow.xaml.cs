@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,11 +25,14 @@ namespace Oh_My_Ping
         private double delay = 0;
         private bool delayTextChanged = false;
         private bool delaySliderChanged = false;
+        private Proxy proxy;
 
-        public MainWindow()
-        {
+        public MainWindow() {
             InitializeComponent();
+            Console.WriteLine("test");
         }
+
+
 
         private void delaySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -37,6 +42,7 @@ namespace Oh_My_Ping
                 return;
             }
 
+            delayLabel.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             delaySliderChanged = true;
             delay = e.NewValue;
             delayLabel.Text = ((int)delay).ToString();
@@ -46,7 +52,7 @@ namespace Oh_My_Ping
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-
+            proxy = new Proxy(addressText.Text);
         }
 
 
