@@ -23,10 +23,10 @@ namespace Oh_My_Ping
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double delay = 0;
+        public static double delay = 0;
         private bool delayTextChanged = false;
         private bool delaySliderChanged = false;
-        private Proxy.Proxy proxy;
+        private ProxyServer proxy;
 
         public MainWindow() {
             InitializeComponent();
@@ -53,8 +53,8 @@ namespace Oh_My_Ping
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            new SimpleProxy(addressText.Text);
-            //proxy = new Proxy.Proxy(addressText.Text);
+            //new SimpleProxy(addressText.Text);
+            proxy = new ProxyServer(addressText.Text);
         }
 
 

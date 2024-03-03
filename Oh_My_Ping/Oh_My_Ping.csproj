@@ -56,7 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Proxy\SinmpleProxy.cs" />
-    <Compile Include="Proxy\Proxy.cs" />
+    <Compile Include="Proxy\ProxyServer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
