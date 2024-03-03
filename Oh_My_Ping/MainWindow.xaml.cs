@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oh_My_Ping.Proxy;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Oh_My_Ping
         private double delay = 0;
         private bool delayTextChanged = false;
         private bool delaySliderChanged = false;
-        private Proxy proxy;
+        private Proxy.Proxy proxy;
 
         public MainWindow() {
             InitializeComponent();
@@ -52,7 +53,8 @@ namespace Oh_My_Ping
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            proxy = new Proxy(addressText.Text);
+            new SimpleProxy(addressText.Text);
+            //proxy = new Proxy.Proxy(addressText.Text);
         }
 
 
