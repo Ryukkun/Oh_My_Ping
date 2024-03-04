@@ -16,7 +16,8 @@ namespace Oh_My_Ping.Proxy {
     internal class ProxyServer {
         private string address;
         private int port;
-
+        private TcpListener server;
+        public bool isRunnning = true;
 
 
 
@@ -36,16 +37,28 @@ namespace Oh_My_Ping.Proxy {
 
 
         private async void loop_server() {
-            TcpListener server = new TcpListener(IPAddress.Parse("127.0.0.1"), 25565);
+            server = new TcpListener(IPAddress.Parse("127.0.0.1"), 25565);
+
             server.Start();
             Console.Write("Waiting for a connection... ");
 
-            while (true) {
-                TcpClient clientSock = await server.AcceptTcpClientAsync();
-                Console.WriteLine("Connected!");
-                await new ProxyServer.Proxy(clientSock, address, port).start();
-
+            try {
+                while (isRunnning) {
+                    TcpClient clientSock = await server.AcceptTcpClientAsync();
+                    Console.WriteLine("Connected!");
+                    await new ProxyServer.Proxy(clientSock, address, port).start();
+                }
+            } catch (InvalidOperationException) { 
+                // stop時に発生
+            } catch (Exception ex) {
+                Console.WriteLine(ex.StackTrace);
             }
+        }
+
+
+        public void close() {
+            isRunnning = false;
+            server.Stop();
         }
 
 
@@ -115,7 +128,7 @@ namespace Oh_My_Ping.Proxy {
                     toTargetCache.Add(null);
                     toTarget();
 
-                } catch (Exception ex) {
+                } catch (Exception) {
                     //Console.WriteLine(ex.StackTrace);
                 }
             }
@@ -136,7 +149,7 @@ namespace Oh_My_Ping.Proxy {
                     toClientCache.Add(null);
                     toClient();
 
-                } catch (Exception ex) {
+                } catch (Exception) {
                     //Console.WriteLine(ex.StackTrace);
                 }
             

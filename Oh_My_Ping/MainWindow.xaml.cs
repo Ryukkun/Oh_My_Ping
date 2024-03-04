@@ -30,7 +30,6 @@ namespace Oh_My_Ping
 
         public MainWindow() {
             InitializeComponent();
-            Console.WriteLine("test");
         }
 
 
@@ -53,8 +52,19 @@ namespace Oh_My_Ping
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            //new SimpleProxy(addressText.Text);
-            proxy = new ProxyServer(addressText.Text);
+            if (proxy?.isRunnning == true) {
+                proxy.close();
+                startButton.Content = "② Start";
+                startButton.Background = new SolidColorBrush(Color.FromRgb(30, 150, 50));
+                startButton.BorderBrush = new SolidColorBrush(Color.FromRgb(70, 200, 80));
+
+            } else {
+                //new SimpleProxy(addressText.Text);
+                proxy = new ProxyServer(addressText.Text);
+                startButton.Content = "Stop";
+                startButton.Background = new SolidColorBrush(Color.FromRgb(150, 30, 30));
+                startButton.BorderBrush = new SolidColorBrush(Color.FromRgb(200, 80, 80));
+            }
         }
 
 
@@ -70,7 +80,7 @@ namespace Oh_My_Ping
                 delay = double.Parse(delayLabel.Text);
                 delayLabel.Background = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 delayLabel.Background = new SolidColorBrush(Color.FromRgb(255, 170, 170));
                 return;

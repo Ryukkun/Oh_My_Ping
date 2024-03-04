@@ -72,7 +72,7 @@ namespace Oh_My_Ping.Proxy {
 
                 targetSock.Close();
                 clientSock.Close();
-            } catch (Exception ex) {
+            } catch (Exception) {
                 //Console.WriteLine(ex.StackTrace);
             }
         }
@@ -90,7 +90,7 @@ namespace Oh_My_Ping.Proxy {
 
                 targetSock.Close();
                 clientSock.Close();
-            } catch (Exception ex) {
+            } catch (Exception) {
                 //Console.WriteLine(ex.StackTrace);
             }
         }
