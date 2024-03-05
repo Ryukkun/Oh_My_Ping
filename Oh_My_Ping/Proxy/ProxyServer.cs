@@ -17,23 +17,28 @@ namespace Oh_My_Ping.Proxy {
         private string address;
         private int port;
         private TcpListener server;
-        public bool isRunnning = true;
+        public bool isRunning = true;
+        private Proxy proxyClient = null;
 
 
 
         public ProxyServer(string _address) {
-            string[] s = _address.Split(':');
-            if (s.Length == 1) {
-                address = _address;
-                port = 25565;
-
-            } else {
-                address = s[0];
-                port = int.Parse(s[1]);
-            }
+            (address, port) = getAddress(_address);
 
             loop_server();
         }
+
+
+        public static (string, int) getAddress(string address) {
+            string[] s = address.Split(':');
+            if (s.Length == 1) {
+                return (address, 25565);
+
+            } else {
+                return (s[0], int.Parse(s[1]));
+            }
+        }
+
 
 
         private async void loop_server() {
@@ -41,12 +46,16 @@ namespace Oh_My_Ping.Proxy {
 
             server.Start();
             Console.Write("Waiting for a connection... ");
+            
 
             try {
-                while (isRunnning) {
+                while (isRunning) {
+                    MainWindow.changeStatus("Waiting for a connection...", 1);
                     TcpClient clientSock = await server.AcceptTcpClientAsync();
                     Console.WriteLine("Connected!");
-                    await new ProxyServer.Proxy(clientSock, address, port).start();
+                    MainWindow.changeStatus("Connecting!!", 2);
+                    proxyClient = new ProxyServer.Proxy(clientSock, address, port);
+                    await proxyClient.start();
                 }
             } catch (InvalidOperationException) { 
                 // stop時に発生
@@ -57,8 +66,11 @@ namespace Oh_My_Ping.Proxy {
 
 
         public void close() {
-            isRunnning = false;
+            isRunning = false;
             server.Stop();
+            if (proxyClient?.isClosed() == false) {
+                proxyClient.close();
+            }
         }
 
 
@@ -89,6 +101,19 @@ namespace Oh_My_Ping.Proxy {
                 clientSock = _clientSock;
                 address = _address; 
                 port = _port;
+            }
+
+
+            public bool isClosed() {
+                return (closeTargetSock && closeClientSock);
+            }
+
+
+            public void close() { 
+                clientSock.Close();
+                targetSock.Close();
+                closeClientSock = true;
+                closeTargetSock = true;
             }
 
 
@@ -177,7 +202,7 @@ namespace Oh_My_Ping.Proxy {
                     Packet packet = toTargetCache[0];
                     if (packet == null) {
                         closeTargetSock = true;
-                        targetSock.Close();
+                        close();
                         toTargetCache.RemoveAt(0);
                         return;
                     }
@@ -215,7 +240,7 @@ namespace Oh_My_Ping.Proxy {
                     Packet packet = toClientCache[0];
                     if (packet == null) {
                         closeClientSock = true;
-                        clientSock.Close();
+                        close();
                         toTargetCache.RemoveAt(0);
                         return;
                     }

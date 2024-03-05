@@ -6,19 +6,20 @@
         xmlns:local="clr-namespace:Oh_My_Ping"
         xmlns:Properties="clr-namespace:Oh_My_Ping.Properties" x:Class="Oh_My_Ping.MainWindow"
         mc:Ignorable="d"
-        Title="Oh My Ping!!" Height="282" Width="670" Icon="/OhMyDat2.png" ResizeMode="NoResize">
+        Title="Oh My Ping!!" Height="291" Width="670" Icon="/OhMyDat2.png" ResizeMode="NoResize">
     <TabControl>
         <TabItem Header="Connection">
             <Grid Background="#FF2F3333">
                 <Slider x:Name="delaySlider" Width="351" HorizontalAlignment="Left" VerticalAlignment="Top" ValueChanged="delaySlider_ValueChanged" Margin="267,150,0,0" Maximum="500" TickFrequency="50" TickPlacement="BottomRight" SmallChange="1"/>
                 <Label Content="① Server address" HorizontalAlignment="Left" Margin="28,28,0,0" VerticalAlignment="Top" BorderBrush="#FFFFDEDE" Foreground="White" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" FontWeight="Bold" FontSize="14"/>
                 <Label Content="➃ Delay&#xA;" HorizontalAlignment="Left" Margin="28,146,0,0" VerticalAlignment="Top" BorderBrush="#FFFFDEDE" Foreground="White" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" FontWeight="Bold" FontSize="14" Height="32"/>
-                <TextBox x:Name="addressText" HorizontalAlignment="Left" Margin="176,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" Height="28" FontSize="16" VerticalContentAlignment="Center"/>
-                <Button x:Name="startButton" Content="➁ Start" HorizontalAlignment="Left" Margin="533,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.202,0.052" Height="28" Width="85" Background="#FF1E9831" Foreground="White" BorderBrush="#FF46C354" Click="startButton_Click"/>
-                <Label Content="➂ Connect to address `localhost:25565`" HorizontalAlignment="Left" Margin="28,87,0,0" VerticalAlignment="Top" BorderBrush="#FFFFDEDE" Foreground="White" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" FontWeight="Bold" FontSize="14" Height="32" RenderTransformOrigin="0.725,-1.468" Width="292"/>
+                <TextBox x:Name="addressText" HorizontalAlignment="Left" Margin="176,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" Height="28" FontSize="16" VerticalContentAlignment="Center" TextChanged="addressText_TextChanged" Foreground="Black" Background="#FFFFABAB"/>
+                <Button x:Name="startButton" Content="➁ Start" HorizontalAlignment="Left" Margin="533,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.202,0.052" Height="28" Width="85" Background="#FF787878" Foreground="White" BorderBrush="#FFB4B4B4" Click="startButton_Click"/>
+                <Label Content="➂ Connect to address `localhost` in Minecraft" HorizontalAlignment="Left" Margin="28,87,0,0" VerticalAlignment="Top" BorderBrush="#FFFFDEDE" Foreground="White" ScrollViewer.CanContentScroll="True" UseLayoutRounding="False" FontWeight="Bold" FontSize="14" Height="32" RenderTransformOrigin="0.725,-1.468" Width="322"/>
                 <TextBox x:Name="delayLabel" HorizontalAlignment="Left" Margin="176,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="46" Height="26" VerticalContentAlignment="Center" Text="0" TextAlignment="Center" TextChanged="delayLabel_TextChanged" Background="White"/>
                 <Label Content="ms" HorizontalAlignment="Left" Margin="227,156,0,0" VerticalAlignment="Top" Foreground="White"/>
                 <Label HorizontalAlignment="Left" Margin="262,169,0,0" VerticalAlignment="Top" Foreground="White" Width="374" Content=" 0                     100                   200                   300                   400                   500" FontSize="10" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+                <Label x:Name="statusLabel" Content="Server not found" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="217,192,0,0" VerticalAlignment="Top" Width="382" Foreground="#FFFF5050"/>
 
             </Grid>
         </TabItem>
