@@ -12,3 +12,4 @@ Minecraftマルチプレイにおいてインターネットの遅延を意図�
 500以上の値は直接入力してね
 
 ## ScreenShot
+![image](https://github.com/Ryukkun/Oh_My_Ping/assets/83561145/747ced65-2a4a-42bd-864d-100120a8cfb3)
