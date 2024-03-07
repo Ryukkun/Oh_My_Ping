@@ -241,7 +241,7 @@ namespace Oh_My_Ping.Proxy {
                     if (packet == null) {
                         closeClientSock = true;
                         close();
-                        toTargetCache.RemoveAt(0);
+                        toClientCache.RemoveAt(0);
                         return;
                     }
                     if (!(packet.time + MainWindow.delay/2 - 8 < DateTimeOffset.UtcNow.ToUnixTimeMilliseconds())) {
